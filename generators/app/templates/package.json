@@ -2,7 +2,6 @@
   "name": "<%= appname %>",
   "version": "0.0.1",
   "private": true,
-    "author": "<%= author %>",
   "scripts": {
     "release": "gulp sass && shadow-cljs release app",
     "watch": "shadow-cljs watch app"

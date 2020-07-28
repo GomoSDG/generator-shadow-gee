@@ -6,30 +6,23 @@ module.exports = class extends Generator {
 
         this.argument("appname", {type: String, required: true});
 
-        const answers = this.prompt([
-            {
-                type     :  'input',
-                name     :  'author',
-                message  :  'author?'
-            }
-        ]);
+        this.gcopyFile = (src, dest=src, bag) => {
+            const b = bag || {
+                appname: this.options.appname
+            };
 
-        this.gcopyFile = (src, dest=src, bag={
-            appname: this.options.appname,
-            author: answers.author
-        }) => {
+
             this.fs.copyTpl(
                 this.templatePath(src),
                 this.destinationPath(dest),
-                bag
+                b
             );
         };
     }
 
-    start() {
+    async start() {
         // create destination folder.
         this.destinationRoot(this.options.appname);
-
     }
 
     copyRootFiles() {
@@ -42,6 +35,9 @@ module.exports = class extends Generator {
 
         // shadow-cljs.edn
         this.gcopyFile('shadow-cljs.edn');
+
+        // .gitignore
+        this.gcopyFile('.gitignore');
     }
 
     copyResourceFiles() {
@@ -52,5 +48,21 @@ module.exports = class extends Generator {
 
         // index.html
         this.gcopyFile('index.html', `${rsrc}/public/index.html`);
+    }
+
+    copySrcFiles() {
+        const src = `src/main/${this.options.appname}`.replace('-', '_');
+
+        // core.cljs
+        this.gcopyFile('core.cljs', `${src}/core.cljs`);
+
+        // site.cljs
+        this.gcopyFile('site.cljs', `${src}/layouts/site.cljs`);
+
+        // home.cljs
+        this.gcopyFile('home.cljs', `${src}/panels/home.cljs`);
+
+        // routes.cljs
+        this.gcopyFile('routes.cljs', `${src}/routes.cljs`);
     }
 };

@@ -1,9 +1,9 @@
 (ns <%= appname %>.core
     (:require [reagent.core :as r]
               [reagent.dom :as rdom]
-              [g5g.layouts.site :refer [site-layout]]
-              [g5g.routes :as routes :refer [hook-browser-navigation!]]
-              [g5g.views :as views]
+              [<%= appname %>.layouts.site :refer [site-layout]]
+              [<%= appname %>.routes :as routes :refer [hook-browser-navigation!]]
+              [<%= appname %>.views :as views]
               [re-frame.core :as re-frame]))
 
 (re-frame/reg-event-db

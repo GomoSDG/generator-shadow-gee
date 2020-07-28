@@ -1,5 +1,5 @@
 (ns <%= appname %>.views
-    (:require [g5g.panels.home :as home]
+    (:require [<%= appname %>.panels.home :as home]
               [re-frame.core :as re-frame]))
 
 (def panels {:home #'home/home})
