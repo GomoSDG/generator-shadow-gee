@@ -1,0 +1,16 @@
+{
+		"name": "generator-shadow-gee",
+		"version": "1.0.0",
+		"description": "Templating for gomosdg.codes sites.",
+		"files": [
+				"generators"
+		],
+		"keywords": [
+				"yeoman-generator"
+		],
+		"dependencies": {
+				"yeoman-generator": "^1.1.1"
+		},
+		"author": "gomosdg",
+		"license": "ISC"
+}
